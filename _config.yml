@@ -8,9 +8,9 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Your Name / Site Title"
+title                    : "James Geronimo"
 title_separator          : "-"
-name                     : &name "Your Name"
+name                     : &name "James Geronimo"
 description              : &description "personal description"
 url                      : https://academicpages.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -22,11 +22,11 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
-  pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  name             : "James Geronimo"
+  pronouns         : "he/him" 
+  bio              : "Computer Science & Data Science @ UC Berkeley"
+  location         : "Berkeley, CA"
+  employer         : "UC Berkeley College of Computing, Data Science, and Society"
   uri              : # URL
   email            : "none@example.org" 
 
@@ -57,7 +57,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : "james-geronimo"
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
