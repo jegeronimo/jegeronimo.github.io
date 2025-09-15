@@ -1,6 +1,6 @@
 ---
 role: "Data Science Consultant"
-modal_id: "1"
+modal_id: "9"
 img: "oracle.png"
 alt: "Oracle"
 start_date: "2025-09-01"
