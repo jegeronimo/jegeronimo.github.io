@@ -11,17 +11,19 @@
       <div class="row contact-flex" style="max-width: 700px; margin: 0 auto;">
         <div class="contact-img-col" style="max-width: 340px; width: 100%; text-align: center;">
           <div class="profile-img-container" style="display: inline-block;">
-            <img id="contact-profile-img" src="img/profile/profile-alt.jpg" alt="James Geronimo" class="img-responsive contact-profile" style="max-width: 300px; margin: 0 auto 30px auto; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <img id="contact-profile-img" src="img/profile/profile-alt.jpg" alt="James Geronimo" class="img-responsive contact-profile" style="max-width: 300px; margin: 0 auto; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
           </div>
         </div>
         <div class="contact-btns-col" style="max-width: 370px; width: 100%; text-align: center;">
-          <h3 style="margin-bottom: 30px;">Let's Connect!</h3>
           <div class="contact-buttons">
-            <a href="mailto:{{ site.email }}" class="btn btn-lg btn-outline contact-btn-flex">
-              <i class="fas fa-envelope fa-fw"></i> Email Me
-            </a>
             <a href="{{ site.social[0].url }}" class="btn btn-lg btn-outline contact-btn-flex" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-linkedin fa-fw"></i> Connect on LinkedIn
+            </a>
+            <a href="https://calendly.com/jegeronimo/chat" class="btn btn-lg btn-outline contact-btn-flex" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-calendar fa-fw"></i> Schedule a Chat
+            </a>
+            <a href="mailto:{{ site.email }}" class="btn btn-lg btn-outline contact-btn-flex">
+              <i class="fas fa-envelope fa-fw"></i> Email Me
             </a>
           </div>
         </div>
@@ -59,8 +61,21 @@
     margin: 0 auto;
   }
   
+  .contact-img-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-btns-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .contact-img-col, .contact-btns-col {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
   
   .contact-buttons {
@@ -78,6 +93,7 @@
     min-width: 300px;
     max-width: 350px;
     margin: 0 auto;
+    margin-top: 0 !important;
   }
   
   .btn.btn-outline.contact-btn-flex i {
