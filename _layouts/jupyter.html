@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ '/css/font-awesome/css/all.min.css' | relative_url }}">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/css/jupyter.css' | relative_url }}">
+  <script type="module" src="{{ '/js/topography.js' | relative_url }}"></script>
 </head>
 <body class="jupyter-body">
   <!-- Top menu bar -->
@@ -70,12 +71,17 @@
           </div>
           <div class="jp-game-card">
             <h3 class="jp-game-title"><i class="fa fa-gamepad"></i> Snake</h3>
-            <p class="jp-game-hint">Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move. Eat the food, avoid the walls and yourself!</p>
-            <div class="jp-game-wrap">
-              <canvas id="snake-canvas" width="360" height="280"></canvas>
-              <div class="jp-game-overlay" id="snake-overlay">
-                <p class="jp-game-overlay-msg" id="snake-overlay-msg">Click or press <kbd>Space</kbd> to start</p>
-                <button type="button" class="jp-game-btn" id="snake-start">Play</button>
+            <p class="jp-game-hint">Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move. Eat the food, avoid the walls and yourself! Move your cursor over the topography to warp the terrain.</p>
+            <div class="jp-game-topo-row">
+              <div class="jp-game-wrap">
+                <canvas id="snake-canvas" width="360" height="280"></canvas>
+                <div class="jp-game-overlay" id="snake-overlay">
+                  <p class="jp-game-overlay-msg" id="snake-overlay-msg">Click or press <kbd>Space</kbd> to start</p>
+                  <button type="button" class="jp-game-btn" id="snake-start">Play</button>
+                </div>
+              </div>
+              <div class="jp-topography-wrap">
+                <canvas id="topography-canvas-about"></canvas>
               </div>
             </div>
             <div class="jp-game-score"><span>Score: <strong id="snake-score">0</strong></span> <button type="button" class="jp-game-btn jp-game-btn-sm" id="snake-restart">Restart</button></div>

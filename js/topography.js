@@ -24,21 +24,48 @@ let lastFrameTime = 0;
 const targetFPS = 30;
 
 function initTopography() {
-    setupCanvas();
-    animate();
-}
-
-function setupCanvas() {
-    canvas = document.getElementById('topography-canvas');
+    const about = document.getElementById('topography-canvas-about');
+    const header = document.getElementById('topography-canvas');
+    canvas = about || header;
+    if (!canvas) return;
     ctx = canvas.getContext('2d');
-    
     if (!ctx) {
         console.error('Could not get canvas context');
         return;
     }
+    const followCursor = !!about;
+    setupCanvas(followCursor);
+    animate();
+}
 
+function setupCanvas(followCursor) {
     canvasSize();
     window.addEventListener('resize', canvasSize);
+
+    if (followCursor) {
+        const wrap = canvas.parentElement;
+        wrap.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+            const gx = Math.floor(mx / res);
+            const gy = Math.floor(my / res);
+            const R = 1;
+            for (let dy = -R; dy <= R; dy++) {
+                for (let dx = -R; dx <= R; dx++) {
+                    if (dx * dx + dy * dy > R * R) continue;
+                    const ny = gy + dy, nx = gx + dx;
+                    if (ny >= 0 && ny < rows && nx >= 0 && nx < cols) {
+                        const d = Math.sqrt(dx * dx + dy * dy);
+                        const boost = Math.max(0, 0.3 - d * 0.2);
+                        if (zBoostValues[ny] && zBoostValues[ny][nx] !== undefined) {
+                            zBoostValues[ny][nx] = Math.max(zBoostValues[ny][nx] || 0, boost);
+                        }
+                    }
+                }
+            }
+        });
+    }
 }
 
 function canvasSize() {
