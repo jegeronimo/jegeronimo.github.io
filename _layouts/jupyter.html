@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ site.description }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+
+  <link rel="stylesheet" href="{{ '/css/font-awesome/css/all.min.css' | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/css/jupyter.css' | relative_url }}">
+</head>
+<body class="jupyter-body">
+  <!-- Top menu bar -->
+  <header class="jp-menubar">
+    <div class="jp-menubar-left">
+      <a href="#about" class="jp-menubar-home">
+        <img src="{{ '/img/favicon/favicon-32x32.png' | relative_url }}" alt="" class="jp-menubar-logo">
+        <span class="jp-title">{{ site.title }}</span>
+      </a>
+    </div>
+    <div class="jp-menubar-right">
+      <a href="mailto:{{ site.email }}" class="jp-icon-btn" title="Email"><i class="fa fa-envelope"></i></a>
+      {% assign linkedin = site.social | where: "title", "linkedin" | first %}
+      {% if linkedin %}<a href="{{ linkedin.url }}" class="jp-icon-btn" target="_blank" rel="noopener" title="{{ linkedin.title }}"><i class="fa-brands fa-{{ linkedin.title }}"></i></a>{% endif %}
+      {% assign github = site.social | where: "title", "github" | first %}
+      {% if github %}<a href="{{ github.url }}" class="jp-icon-btn" target="_blank" rel="noopener" title="{{ github.title }}"><i class="fa-brands fa-{{ github.title }}"></i></a>{% endif %}
+      {% assign instagram = site.social | where: "title", "instagram" | first %}
+      {% if instagram %}<a href="{{ instagram.url }}" class="jp-icon-btn" target="_blank" rel="noopener" title="{{ instagram.title }}"><i class="fa-brands fa-{{ instagram.title }}"></i></a>{% endif %}
+    </div>
+  </header>
+
+  <!-- Tab bar (Launcher-style: icon, label, close) -->
+  <div class="jp-tabbar">
+    <div class="jp-tabbar-content">
+      <div class="jp-tab jp-tab-active" data-tab="about">
+        <span class="jp-tab-icon"><i class="fa fa-file-lines"></i></span>
+        <span class="jp-tab-label">About</span>
+      </div>
+      <div class="jp-tab" data-tab="experience">
+        <span class="jp-tab-icon"><i class="fa fa-briefcase"></i></span>
+        <span class="jp-tab-label">Experience</span>
+      </div>
+      <div class="jp-tab" data-tab="contact">
+        <span class="jp-tab-icon"><i class="fa fa-envelope"></i></span>
+        <span class="jp-tab-label">Contact</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main: left activity bar + content -->
+  <main class="jp-main">
+    <aside class="jp-sidebar">
+      <div class="jp-sidebar-item jp-sidebar-active" data-tab="about" title="About"><i class="fa fa-user"></i></div>
+      <div class="jp-sidebar-item" data-tab="experience" title="Experience"><i class="fa fa-briefcase"></i></div>
+      <div class="jp-sidebar-item" data-tab="contact" title="Contact"><i class="fa fa-envelope"></i></div>
+    </aside>
+    <div class="jp-content-wrapper">
+      <div class="jp-content">
+        <!-- About tab -->
+        <section class="jp-tab-pane jp-active" id="about">
+          <h2 class="jp-section-title"><i class="fa fa-circle-info"></i> About</h2>
+          <div class="jp-about-block">
+            <p>I am an undergraduate student at the <strong>University of California, Berkeley</strong>, pursuing degrees in <strong>Computer Science</strong> and <strong>Data Science</strong>. I am passionate about leveraging computing to make data-driven decisions across various domains, particularly in biotechnology, business, and education.</p>
+            <p>My current research interests lie in evaluating large language model robustness, building AI tutoring systems, and developing educational tools in CS-adjacent domains. Overall, I enjoy applying my skills in innovative ways, seeking challenging opportunities, and creating a meaningful impact.</p>
+          </div>
+        </section>
+
+        <!-- Experience tab -->
+        <section class="jp-tab-pane" id="experience">
+          <h2 class="jp-section-title"><i class="fa fa-briefcase"></i> Experience</h2>
+          <div class="jp-exp-grid">
+            {% assign sorted_experiences = site.experiences | sort: 'end_date' | reverse %}
+            {% for exp in sorted_experiences %}
+            {% assign end_display = exp.end_date | date: '%s' %}
+            {% assign now_ts = site.time | date: '%s' %}
+            {% assign has_bullets = exp.bullets | size %}
+            <div class="jp-exp-card {% if has_bullets > 0 %}jp-exp-expandable{% endif %}">
+              <div class="jp-exp-card-inner">
+                <div class="jp-exp-card-icon">
+                  <img src="{{ '/img/experience/' | append: exp.img | relative_url }}" alt="">
+                </div>
+                <p class="jp-exp-card-title">{{ exp.company }}</p>
+                <span class="jp-exp-card-date">{{ exp.start_date | date: "%b %Y" }} — {% if exp.end_date %}{% if end_display > now_ts %}Present{% else %}{{ exp.end_date | date: "%b %Y" }}{% endif %}{% else %}Present{% endif %}</span>
+                <p class="jp-exp-card-sub">{{ exp.role }}</p>
+                {% if exp.type %}<span class="jp-exp-card-type">{{ exp.type }}</span>{% endif %}
+                <p class="jp-exp-card-desc">{{ exp.description }}</p>
+                {% if has_bullets > 0 %}
+                <span class="jp-exp-card-toggle"><i class="fa fa-chevron-down"></i></span>
+                {% endif %}
+              </div>
+              {% if has_bullets > 0 %}
+              <div class="jp-exp-body">
+                <div class="jp-exp-body-inner">
+                  <ul>
+                    {% for b in exp.bullets %}
+                    <li>{{ b }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+
+        <!-- Contact tab -->
+        <section class="jp-tab-pane" id="contact">
+          <h2 class="jp-section-title"><i class="fa fa-envelope"></i> Contact</h2>
+          <div class="jp-contact-actions-grid">
+            <a href="https://calendly.com/jegeronimo/chat" class="jp-card jp-contact-action" target="_blank" rel="noopener">
+              <div class="jp-card-icon"><i class="fa fa-calendar"></i></div>
+              <p class="jp-card-title">Calendly</p>
+              <p class="jp-card-sub">Let's Chat</p>
+            </a>
+            <a href="mailto:{{ site.email }}" class="jp-card jp-contact-action">
+              <div class="jp-card-icon"><i class="fa fa-envelope"></i></div>
+              <p class="jp-card-title">Email</p>
+              <p class="jp-card-sub">jegeronimo@berkeley.edu</p>
+            </a>
+            {% assign linkedin = site.social | where: "title", "linkedin" | first %}
+            {% if linkedin %}<a href="{{ linkedin.url }}" class="jp-card jp-contact-action" target="_blank" rel="noopener">
+              <div class="jp-card-icon"><i class="fa-brands fa-linkedin"></i></div>
+              <p class="jp-card-title">LinkedIn</p>
+              <p class="jp-card-sub">@james-geronimo</p>
+            </a>{% endif %}
+            {% assign github = site.social | where: "title", "github" | first %}
+            {% if github %}<a href="{{ github.url }}" class="jp-card jp-contact-action" target="_blank" rel="noopener">
+              <div class="jp-card-icon"><i class="fa-brands fa-github"></i></div>
+              <p class="jp-card-title">GitHub</p>
+              <p class="jp-card-sub">@jegeronimo</p>
+            </a>{% endif %}
+            <a href="resume.pdf" class="jp-card jp-contact-action" target="_blank">
+              <div class="jp-card-icon"><i class="fa fa-file-pdf"></i></div>
+              <p class="jp-card-title">Resume</p>
+              <p class="jp-card-sub">James Geronimo</p>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="jp-statusbar">
+    <span class="jp-status-left"><i class="fa fa-circle"></i> {{ site.title }}</span>
+    <span class="jp-status-right">Ready</span>
+  </footer>
+
+  <script>
+(function() {
+  var tabs = document.querySelectorAll('.jp-tab');
+  var panes = document.querySelectorAll('.jp-tab-pane');
+  var sidebars = document.querySelectorAll('.jp-sidebar-item');
+  var validTabs = ['about', 'experience', 'contact'];
+
+  function getTabFromHash() {
+    var h = (location.hash || '#').replace(/^#/, '').toLowerCase();
+    if (h === 'experiences') return 'experience';
+    return validTabs.indexOf(h) >= 0 ? h : 'about';
+  }
+
+  function switchTo(id) {
+    tabs.forEach(function(t) { t.classList.toggle('jp-tab-active', t.getAttribute('data-tab') === id); });
+    panes.forEach(function(p) { p.classList.toggle('jp-active', p.id === id); });
+    sidebars.forEach(function(s) { s.classList.toggle('jp-sidebar-active', s.getAttribute('data-tab') === id); });
+    var want = '#' + id;
+    if ((location.hash || '') !== want) {
+      var base = (location.pathname || '/') + (location.search || '');
+      history.replaceState(null, '', base + want);
+    }
+  }
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() { switchTo(tab.getAttribute('data-tab')); });
+  });
+
+  sidebars.forEach(function(sb) {
+    sb.addEventListener('click', function() { switchTo(sb.getAttribute('data-tab')); });
+  });
+
+  window.addEventListener('hashchange', function() { switchTo(getTabFromHash()); });
+  switchTo(getTabFromHash());
+
+  document.querySelectorAll('.jp-exp-card').forEach(function(card) {
+    var inner = card.querySelector('.jp-exp-card-inner');
+    if (inner) inner.addEventListener('click', function() { card.classList.toggle('jp-expanded'); });
+  });
+})();
+  </script>
+</body>
+</html>
