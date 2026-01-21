@@ -14,7 +14,7 @@
           {% for experience in sorted_experiences %}
           <div class="timeline-item {% if forloop.index > 4 %}experience-hidden{% endif %}">
             <div class="timeline-dot">
-              <a href="#experienceModal-{{ experience.modal_id }}" class="timeline-link" data-toggle="modal">
+              <a href="#experienceModal-{{ experience.slug }}" class="timeline-link" data-toggle="modal">
                 <div class="timeline-hover">
                   <span class="timeline-hover-content"><i class="fa fa-search-plus fa-3x"></i></span>
                 </div>
