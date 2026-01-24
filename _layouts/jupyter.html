@@ -64,100 +64,178 @@
       <div class="jp-content">
         <!-- About tab -->
         <section class="jp-tab-pane jp-active" id="about">
-          <h2 class="jp-section-title"><i class="fa fa-circle-info"></i> About</h2>
-          <div class="jp-about-block">
-            <p>I am an undergraduate student at the <strong>University of California, Berkeley</strong>, pursuing degrees in <strong>Computer Science</strong> and <strong>Data Science</strong>. I am passionate about leveraging computing to make data-driven decisions across various domains, particularly in biotechnology, business, and education.</p>
-            <p>My current research interests lie in evaluating large language model robustness, building AI tutoring systems, and developing educational tools in CS-adjacent domains. Overall, I enjoy applying my skills in innovative ways, seeking challenging opportunities, and creating a meaningful impact.</p>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [1]:</div>
+            <div class="jp-cell-content">
+              <h2 class="jp-section-title"><i class="fa fa-circle-info"></i> About</h2>
+            </div>
           </div>
-          <div class="jp-game-card">
-            <h3 class="jp-game-title"><i class="fa fa-gamepad"></i> Snake</h3>
-            <p class="jp-game-hint">Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move. Eat the food, avoid the walls and yourself! Move your cursor over the topography to warp the terrain.</p>
-            <div class="jp-game-topo-row">
-              <div class="jp-game-wrap">
-                <canvas id="snake-canvas" width="360" height="280"></canvas>
-                <div class="jp-game-overlay" id="snake-overlay">
-                  <p class="jp-game-overlay-msg" id="snake-overlay-msg">Click or press <kbd>Space</kbd> to start</p>
-                  <button type="button" class="jp-game-btn" id="snake-start">Play</button>
-                </div>
-              </div>
-              <div class="jp-topography-wrap">
-                <canvas id="topography-canvas-about"></canvas>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [2]:</div>
+            <div class="jp-cell-content">
+              <div class="jp-header-intro">
+                <img src="{{ '/img/profile/me.jpg' | relative_url }}" alt="James Geronimo" class="jp-profile-photo">
+                <h1 class="jp-header-title">👋 Hello! I'm James.</h1>
               </div>
             </div>
-            <div class="jp-game-score"><span>Score: <strong id="snake-score">0</strong></span> <button type="button" class="jp-game-btn jp-game-btn-sm" id="snake-restart">Restart</button></div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [3]:</div>
+            <div class="jp-cell-content">
+              <div class="jp-about-block">
+                <p>👋 I am an undergraduate student at <b>UC Berkeley</b> pursuing Bachelor’s degrees in <b>Computer Science</b> and <b>Data Science</b>.</p>
+                <p>💻 My technical interests lie in software engineering, generative AI, and CS education tools. I am passionate about leveraging technology across healthcare, biotechnology, and education.</p>
+                <p>🎙️ Would love to chat! See the <b>Contact</b> tab for my email and social media profiles.</p>
+              </div>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [4]:</div>
+            <div class="jp-cell-content">
+              <div class="jp-game-card">
+                <p class="jp-game-hint">Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move. Eat the food, avoid the walls and yourself! You can also move cursor over the topography to warp the terrain.</p>
+                <div class="jp-game-topo-row">
+                  <div class="jp-game-wrap">
+                    <canvas id="snake-canvas" width="360" height="280"></canvas>
+                    <div class="jp-game-overlay" id="snake-overlay">
+                      <p class="jp-game-overlay-msg" id="snake-overlay-msg">Click or press <kbd>Space</kbd> to start</p>
+                      <button type="button" class="jp-game-btn" id="snake-start">Play</button>
+                    </div>
+                  </div>
+                  <div class="jp-topography-wrap">
+                    <canvas id="topography-canvas-about"></canvas>
+                  </div>
+                </div>
+                <div class="jp-game-score"><span>Score: <strong id="snake-score">0</strong></span> <button type="button" class="jp-game-btn jp-game-btn-sm" id="snake-restart">Restart</button></div>
+              </div>
+            </div>
           </div>
         </section>
 
         <!-- Experience tab -->
         <section class="jp-tab-pane" id="experience">
-          <h2 class="jp-section-title"><i class="fa fa-briefcase"></i> Experience</h2>
-          <div class="jp-exp-grid">
-            {% assign sorted_experiences = site.experiences | sort: 'end_date' | reverse %}
-            {% for exp in sorted_experiences %}
-            {% assign end_display = exp.end_date | date: '%s' %}
-            {% assign now_ts = site.time | date: '%s' %}
-            {% assign has_bullets = exp.bullets | size %}
-            <div class="jp-exp-card {% if has_bullets > 0 %}jp-exp-expandable{% endif %}">
-              <div class="jp-exp-card-inner">
-                <div class="jp-exp-card-icon">
-                  <img src="{{ '/img/experience/' | append: exp.img | relative_url }}" alt="">
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [1]:</div>
+            <div class="jp-cell-content">
+              <h2 class="jp-section-title"><i class="fa fa-briefcase"></i> Experience</h2>
+            </div>
+          </div>
+          {% assign sorted_experiences = site.experiences | sort: 'end_date' | reverse %}
+          {% for exp in sorted_experiences %}
+          {% assign end_display = exp.end_date | date: '%s' %}
+          {% assign now_ts = site.time | date: '%s' %}
+          {% assign has_bullets = exp.bullets | size %}
+          {% assign cell_num = forloop.index | plus: 1 %}
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [{{ cell_num }}]:</div>
+            <div class="jp-cell-content">
+              <div class="jp-exp-card {% if has_bullets > 0 %}jp-exp-expandable{% endif %}">
+                <div class="jp-exp-card-inner">
+                  <div class="jp-exp-card-icon">
+                    <img src="{{ '/img/experience/' | append: exp.img | relative_url }}" alt="">
+                  </div>
+                  <p class="jp-exp-card-title">{{ exp.company }}</p>
+                  <span class="jp-exp-card-date">{{ exp.start_date | date: "%b %Y" }} — {% if exp.end_date %}{% if end_display > now_ts %}Present{% else %}{{ exp.end_date | date: "%b %Y" }}{% endif %}{% else %}Present{% endif %}</span>
+                  <p class="jp-exp-card-sub">{{ exp.role }}</p>
+                  {% if exp.type %}<span class="jp-exp-card-type">{{ exp.type }}</span>{% endif %}
+                  <p class="jp-exp-card-desc">{{ exp.description }}</p>
+                  {% if has_bullets > 0 %}
+                  <span class="jp-exp-card-toggle"><i class="fa fa-chevron-down"></i></span>
+                  {% endif %}
                 </div>
-                <p class="jp-exp-card-title">{{ exp.company }}</p>
-                <span class="jp-exp-card-date">{{ exp.start_date | date: "%b %Y" }} — {% if exp.end_date %}{% if end_display > now_ts %}Present{% else %}{{ exp.end_date | date: "%b %Y" }}{% endif %}{% else %}Present{% endif %}</span>
-                <p class="jp-exp-card-sub">{{ exp.role }}</p>
-                {% if exp.type %}<span class="jp-exp-card-type">{{ exp.type }}</span>{% endif %}
-                <p class="jp-exp-card-desc">{{ exp.description }}</p>
                 {% if has_bullets > 0 %}
-                <span class="jp-exp-card-toggle"><i class="fa fa-chevron-down"></i></span>
+                <div class="jp-exp-body">
+                  <div class="jp-exp-body-inner">
+                    <ul>
+                      {% for b in exp.bullets %}
+                      <li>{{ b }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
                 {% endif %}
               </div>
-              {% if has_bullets > 0 %}
-              <div class="jp-exp-body">
-                <div class="jp-exp-body-inner">
-                  <ul>
-                    {% for b in exp.bullets %}
-                    <li>{{ b }}</li>
-                    {% endfor %}
-                  </ul>
-                </div>
-              </div>
-              {% endif %}
             </div>
-            {% endfor %}
           </div>
+          {% endfor %}
         </section>
 
         <!-- Contact tab -->
         <section class="jp-tab-pane" id="contact">
-          <h2 class="jp-section-title"><i class="fa fa-envelope"></i> Contact</h2>
-          <div class="jp-contact-actions-grid">
-            <a href="https://calendly.com/jegeronimo/chat" class="jp-card jp-contact-action" target="_blank" rel="noopener">
-              <div class="jp-card-icon"><i class="fa fa-calendar"></i></div>
-              <p class="jp-card-title">Calendly</p>
-              <p class="jp-card-sub">Let's Chat</p>
-            </a>
-            <a href="mailto:{{ site.email }}" class="jp-card jp-contact-action">
-              <div class="jp-card-icon"><i class="fa fa-envelope"></i></div>
-              <p class="jp-card-title">Email</p>
-              <p class="jp-card-sub">jegeronimo@berkeley.edu</p>
-            </a>
-            {% assign linkedin = site.social | where: "title", "linkedin" | first %}
-            {% if linkedin %}<a href="{{ linkedin.url }}" class="jp-card jp-contact-action" target="_blank" rel="noopener">
-              <div class="jp-card-icon"><i class="fa-brands fa-linkedin"></i></div>
-              <p class="jp-card-title">LinkedIn</p>
-              <p class="jp-card-sub">@james-geronimo</p>
-            </a>{% endif %}
-            {% assign github = site.social | where: "title", "github" | first %}
-            {% if github %}<a href="{{ github.url }}" class="jp-card jp-contact-action" target="_blank" rel="noopener">
-              <div class="jp-card-icon"><i class="fa-brands fa-github"></i></div>
-              <p class="jp-card-title">GitHub</p>
-              <p class="jp-card-sub">@jegeronimo</p>
-            </a>{% endif %}
-            <a href="resume.pdf" class="jp-card jp-contact-action" target="_blank">
-              <div class="jp-card-icon"><i class="fa fa-file-pdf"></i></div>
-              <p class="jp-card-title">Resume</p>
-              <p class="jp-card-sub">James Geronimo</p>
-            </a>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [1]:</div>
+            <div class="jp-cell-content">
+              <h2 class="jp-section-title"><i class="fa fa-envelope"></i> Contact</h2>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [2]:</div>
+            <div class="jp-cell-content">
+              <pre class="jp-code-cell"><code>primary_contacts = { "calendly": "calendly.com/jegeronimo/chat", "email": "jegeronimo@berkeley.edu" }
+display(primary_contacts)</code></pre>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">Out[2]:</div>
+            <div class="jp-cell-content">
+              <div class="jp-contact-actions-grid">
+                <a href="https://calendly.com/jegeronimo/chat" class="jp-card jp-contact-action" target="_blank" rel="noopener">
+                  <div class="jp-card-icon"><i class="fa fa-calendar"></i></div>
+                  <p class="jp-card-title">Calendly</p>
+                  <p class="jp-card-sub">Let's Chat</p>
+                </a>
+                <a href="mailto:{{ site.email }}" class="jp-card jp-contact-action">
+                  <div class="jp-card-icon"><i class="fa fa-envelope"></i></div>
+                  <p class="jp-card-title">Email</p>
+                  <p class="jp-card-sub">jegeronimo@berkeley.edu</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [3]:</div>
+            <div class="jp-cell-content">
+              <pre class="jp-code-cell"><code>social_profiles = { "linkedin": "@james-geronimo", "github": "@jegeronimo" }
+display(social_profiles)</code></pre>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">Out[3]:</div>
+            <div class="jp-cell-content">
+              <div class="jp-contact-actions-grid">
+                {% assign linkedin = site.social | where: "title", "linkedin" | first %}
+                {% if linkedin %}<a href="{{ linkedin.url }}" class="jp-card jp-contact-action" target="_blank" rel="noopener">
+                  <div class="jp-card-icon"><i class="fa-brands fa-linkedin"></i></div>
+                  <p class="jp-card-title">LinkedIn</p>
+                  <p class="jp-card-sub">@james-geronimo</p>
+                </a>{% endif %}
+                {% assign github = site.social | where: "title", "github" | first %}
+                {% if github %}<a href="{{ github.url }}" class="jp-card jp-contact-action" target="_blank" rel="noopener">
+                  <div class="jp-card-icon"><i class="fa-brands fa-github"></i></div>
+                  <p class="jp-card-title">GitHub</p>
+                  <p class="jp-card-sub">@jegeronimo</p>
+                </a>{% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">In [4]:</div>
+            <div class="jp-cell-content">
+              <pre class="jp-code-cell"><code>resume = { "name": "James Geronimo", "format": "PDF", "status": "Available" }
+display(resume)</code></pre>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-prompt">Out[4]:</div>
+            <div class="jp-cell-content">
+              <div class="jp-contact-actions-grid">
+                <a href="resume.pdf" class="jp-card jp-contact-action" target="_blank">
+                  <div class="jp-card-icon"><i class="fa fa-file-pdf"></i></div>
+                  <p class="jp-card-title">Resume</p>
+                  <p class="jp-card-sub">James Geronimo</p>
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -169,142 +247,7 @@
     <span class="jp-status-right">Ready</span>
   </footer>
 
-  <script>
-(function() {
-  var tabs = document.querySelectorAll('.jp-tab');
-  var panes = document.querySelectorAll('.jp-tab-pane');
-  var sidebars = document.querySelectorAll('.jp-sidebar-item');
-  var validTabs = ['about', 'experience', 'contact'];
-
-  function getTabFromHash() {
-    var h = (location.hash || '#').replace(/^#/, '').toLowerCase();
-    if (h === 'experiences') return 'experience';
-    return validTabs.indexOf(h) >= 0 ? h : 'about';
-  }
-
-  function switchTo(id) {
-    tabs.forEach(function(t) { t.classList.toggle('jp-tab-active', t.getAttribute('data-tab') === id); });
-    panes.forEach(function(p) { p.classList.toggle('jp-active', p.id === id); });
-    sidebars.forEach(function(s) { s.classList.toggle('jp-sidebar-active', s.getAttribute('data-tab') === id); });
-    var want = '#' + id;
-    if ((location.hash || '') !== want) {
-      var base = (location.pathname || '/') + (location.search || '');
-      history.replaceState(null, '', base + want);
-    }
-  }
-
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() { switchTo(tab.getAttribute('data-tab')); });
-  });
-
-  sidebars.forEach(function(sb) {
-    sb.addEventListener('click', function() { switchTo(sb.getAttribute('data-tab')); });
-  });
-
-  window.addEventListener('hashchange', function() { switchTo(getTabFromHash()); });
-  switchTo(getTabFromHash());
-
-  document.querySelectorAll('.jp-exp-card').forEach(function(card) {
-    var inner = card.querySelector('.jp-exp-card-inner');
-    if (inner) inner.addEventListener('click', function() { card.classList.toggle('jp-expanded'); });
-  });
-})();
-  </script>
-  <script>
-(function() {
-  var canvas = document.getElementById('snake-canvas');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var overlay = document.getElementById('snake-overlay');
-  var overlayMsg = document.getElementById('snake-overlay-msg');
-  var scoreEl = document.getElementById('snake-score');
-  var startBtn = document.getElementById('snake-start');
-  var restartBtn = document.getElementById('snake-restart');
-
-  var cell = 20;
-  var cols = Math.floor(360 / cell);
-  var rows = Math.floor(280 / cell);
-  var snake = [], food = {}, dir = { x: 1, y: 0 };
-  var score = 0, running = false, loop = null;
-
-  function rnd(lim) { return Math.floor(Math.random() * lim); }
-  function spawnFood() {
-    var ok;
-    do {
-      food = { x: rnd(cols), y: rnd(rows) };
-      ok = snake.every(function(s) { return s.x !== food.x || s.y !== food.y; });
-    } while (!ok);
-  }
-  function draw() {
-    ctx.fillStyle = '#fafafa';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = '#e8e8e8';
-    ctx.lineWidth = 1;
-    for (var i = 0; i <= cols; i++) ctx.beginPath(), ctx.moveTo(i * cell, 0), ctx.lineTo(i * cell, canvas.height), ctx.stroke();
-    for (var j = 0; j <= rows; j++) ctx.beginPath(), ctx.moveTo(0, j * cell), ctx.lineTo(canvas.width, j * cell), ctx.stroke();
-    ctx.fillStyle = '#1976d2';
-    snake.forEach(function(s, i) {
-      ctx.fillStyle = i === 0 ? '#1565c0' : '#1976d2';
-      ctx.fillRect(s.x * cell + 1, s.y * cell + 1, cell - 2, cell - 2);
-    });
-    ctx.fillStyle = '#e53935';
-    ctx.beginPath();
-    var cx = food.x * cell + cell / 2, cy = food.y * cell + cell / 2;
-    ctx.arc(cx, cy, cell / 2 - 2, 0, Math.PI * 2);
-    ctx.fill();
-  }
-  function tick() {
-    var h = snake[0];
-    var nx = h.x + dir.x, ny = h.y + dir.y;
-    if (nx < 0 || nx >= cols || ny < 0 || ny >= rows) { gameOver(); return; }
-    for (var i = 0; i < snake.length; i++)
-      if (snake[i].x === nx && snake[i].y === ny) { gameOver(); return; }
-    snake.unshift({ x: nx, y: ny });
-    if (nx === food.x && ny === food.y) { score++; scoreEl.textContent = score; spawnFood(); } else snake.pop();
-    draw();
-  }
-  function start() {
-    if (running) return;
-    snake = [{ x: Math.floor(cols / 2), y: Math.floor(rows / 2) }];
-    dir = { x: 1, y: 0 };
-    score = 0; scoreEl.textContent = '0';
-    spawnFood();
-    overlay.classList.add('jp-game-hidden');
-    running = true;
-    draw();
-    loop = setInterval(tick, 120);
-  }
-  function gameOver() {
-    if (!running) return;
-    running = false;
-    clearInterval(loop);
-    overlayMsg.textContent = 'Game over! Score: ' + score;
-    overlay.classList.remove('jp-game-hidden');
-  }
-  function restart() {
-    if (loop) clearInterval(loop);
-    running = false;
-    snake = [];
-    overlayMsg.textContent = 'Click or press Space to start';
-    overlay.classList.remove('jp-game-hidden');
-    spawnFood();
-    draw();
-  }
-  document.addEventListener('keydown', function(e) {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-    if (e.code === 'Space') { e.preventDefault(); if (running) return; if (overlay.classList.contains('jp-game-hidden')) return; start(); return; }
-    if (!running) return;
-    if (e.code === 'ArrowUp'    || e.code === 'KeyW') { e.preventDefault(); if (dir.y === 0) dir = { x: 0, y: -1 }; }
-    else if (e.code === 'ArrowDown' || e.code === 'KeyS') { e.preventDefault(); if (dir.y === 0) dir = { x: 0, y:  1 }; }
-    else if (e.code === 'ArrowLeft' || e.code === 'KeyA') { e.preventDefault(); if (dir.x === 0) dir = { x: -1, y: 0 }; }
-    else if (e.code === 'ArrowRight'|| e.code === 'KeyD') { e.preventDefault(); if (dir.x === 0) dir = { x:  1, y: 0 }; }
-  });
-  canvas.addEventListener('click', function() { if (!running && !overlay.classList.contains('jp-game-hidden')) start(); });
-  startBtn.addEventListener('click', function(e) { e.stopPropagation(); start(); });
-  restartBtn.addEventListener('click', function(e) { e.stopPropagation(); restart(); });
-  spawnFood();
-  draw();
-})();
-  </script>
+  <!-- Main JavaScript -->
+  <script src="{{ '/js/main.js' | relative_url }}"></script>
 </body>
 </html>

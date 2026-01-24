@@ -12,22 +12,5 @@
 <!-- Custom Theme JavaScript -->
 <script src="{{ " js/freelancer.js" }}"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize Bootstrap scrollspy
-  $('body').scrollspy({
-    target: '.navbar-fixed-top',
-    offset: $('.navbar-fixed-top').outerHeight()
-  });
-
-  // Custom scroll handling for smooth scrolling
-  $('.page-scroll a').bind('click', function(event) {
-    var $anchor = $(this);
-    var headerHeight = $('.navbar-fixed-top').outerHeight();
-    $('html, body').stop().animate({
-      scrollTop: $($anchor.attr('href')).offset().top - headerHeight
-    }, 1500, 'easeInOutExpo');
-    event.preventDefault();
-  });
-});
-</script>
+<!-- Main JavaScript -->
+<script src="{{ '/js/main.js' | relative_url }}"></script>
