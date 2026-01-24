@@ -24,7 +24,21 @@
         <span class="jp-title">{{ site.title }}</span>
       </a>
     </div>
+    <div class="jp-menubar-menu">
+      <div class="jp-menu-item">File</div>
+      <div class="jp-menu-item">Edit</div>
+      <div class="jp-menu-item">View</div>
+      <div class="jp-menu-item">Run</div>
+      <div class="jp-menu-item">Kernel</div>
+      <div class="jp-menu-item">Tabs</div>
+      <div class="jp-menu-item">Settings</div>
+      <div class="jp-menu-item">Help</div>
+    </div>
     <div class="jp-menubar-right">
+      <div class="jp-kernel-indicator">
+        <i class="fa fa-circle jp-kernel-status"></i>
+        <span>Python 3 (ipykernel)</span>
+      </div>
       <a href="mailto:{{ site.email }}" class="jp-icon-btn" title="Email"><i class="fa fa-envelope"></i></a>
       {% assign linkedin = site.social | where: "title", "linkedin" | first %}
       {% if linkedin %}<a href="{{ linkedin.url }}" class="jp-icon-btn" target="_blank" rel="noopener" title="{{ linkedin.title }}"><i class="fa-brands fa-{{ linkedin.title }}"></i></a>{% endif %}
@@ -35,43 +49,80 @@
     </div>
   </header>
 
-  <!-- Tab bar (Launcher-style: icon, label, close) -->
-  <div class="jp-tabbar">
-    <div class="jp-tabbar-content">
-      <div class="jp-tab jp-tab-active" data-tab="about">
-        <span class="jp-tab-icon"><i class="fa fa-file-lines"></i></span>
-        <span class="jp-tab-label">About</span>
-      </div>
-      <div class="jp-tab" data-tab="experience">
-        <span class="jp-tab-icon"><i class="fa fa-briefcase"></i></span>
-        <span class="jp-tab-label">Experience</span>
-      </div>
-      <div class="jp-tab" data-tab="contact">
-        <span class="jp-tab-icon"><i class="fa fa-envelope"></i></span>
-        <span class="jp-tab-label">Contact</span>
+  <!-- Toolbar -->
+  <div class="jp-toolbar">
+    <div class="jp-toolbar-group">
+      <button class="jp-toolbar-btn" title="New Launcher"><i class="fa fa-plus-circle"></i></button>
+      <button class="jp-toolbar-btn" title="Open File"><i class="fa fa-folder"></i></button>
+      <button class="jp-toolbar-btn" title="Save"><i class="fa fa-floppy-disk"></i></button>
+      <button class="jp-toolbar-btn" title="Upload"><i class="fa fa-arrow-up"></i></button>
+      <button class="jp-toolbar-btn" title="Refresh"><i class="fa fa-arrow-rotate-right"></i></button>
+    </div>
+    <div class="jp-toolbar-divider"></div>
+    <div class="jp-toolbar-group">
+      <button class="jp-toolbar-btn" title="Stop"><i class="fa fa-stop"></i></button>
+      <button class="jp-toolbar-btn" title="Restart Kernel"><i class="fa fa-rotate-right"></i></button>
+    </div>
+    <div class="jp-toolbar-divider"></div>
+    <div class="jp-toolbar-group">
+      <button class="jp-toolbar-btn" title="Cut"><i class="fa fa-scissors"></i></button>
+      <button class="jp-toolbar-btn" title="Copy"><i class="fa fa-copy"></i></button>
+      <button class="jp-toolbar-btn" title="Paste"><i class="fa fa-paste"></i></button>
+    </div>
+    <div class="jp-toolbar-divider"></div>
+    <div class="jp-toolbar-group">
+      <button class="jp-toolbar-btn" title="Run Cell"><i class="fa fa-play"></i></button>
+      <button class="jp-toolbar-btn" title="Run Cell and Select Below"><i class="fa fa-forward-step"></i></button>
+    </div>
+    <div class="jp-toolbar-divider"></div>
+    <div class="jp-toolbar-group">
+      <div class="jp-cell-type-dropdown">
+        <span>Code</span>
+        <i class="fa fa-chevron-down"></i>
       </div>
     </div>
   </div>
 
-  <!-- Main: left activity bar + content -->
+  <!-- Tab bar (Launcher-style: icon, label, close) -->
+  <div class="jp-tabbar">
+    <div class="jp-tabbar-content">
+      <div class="jp-tab jp-tab-active" data-tab="about">
+        <span class="jp-tab-icon"><i class="fa fa-user"></i></span>
+        <span class="jp-tab-label">about.py</span>
+      </div>
+      <div class="jp-tab" data-tab="experience">
+        <span class="jp-tab-icon"><i class="fa fa-briefcase"></i></span>
+        <span class="jp-tab-label">experience.py</span>
+      </div>
+      <div class="jp-tab" data-tab="contact">
+        <span class="jp-tab-icon"><i class="fa fa-envelope"></i></span>
+        <span class="jp-tab-label">contact.py</span>
+      </div>
+      <div class="jp-tabbar-actions">
+        <button class="jp-tabbar-btn" title="New Tab"><i class="fa fa-plus"></i></button>
+        <button class="jp-tabbar-btn" title="Settings"><i class="fa fa-gear"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main: content -->
   <main class="jp-main">
-    <aside class="jp-sidebar">
-      <div class="jp-sidebar-item jp-sidebar-active" data-tab="about" title="About"><i class="fa fa-user"></i></div>
-      <div class="jp-sidebar-item" data-tab="experience" title="Experience"><i class="fa fa-briefcase"></i></div>
-      <div class="jp-sidebar-item" data-tab="contact" title="Contact"><i class="fa fa-envelope"></i></div>
-    </aside>
     <div class="jp-content-wrapper">
       <div class="jp-content">
         <!-- About tab -->
         <section class="jp-tab-pane jp-active" id="about">
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [1]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [1]:</div>
+            </div>
             <div class="jp-cell-content">
-              <h2 class="jp-section-title"><i class="fa fa-circle-info"></i> About</h2>
+              <h2 class="jp-section-title"><i class="fa fa-user"></i> About</h2>
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [2]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [2]:</div>
+            </div>
             <div class="jp-cell-content">
               <div class="jp-header-intro">
                 <img src="{{ '/img/profile/me.jpg' | relative_url }}" alt="James Geronimo" class="jp-profile-photo">
@@ -80,7 +131,9 @@
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [3]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [3]:</div>
+            </div>
             <div class="jp-cell-content">
               <div class="jp-about-block">
                 <p>👋 I am an undergraduate student at <b>UC Berkeley</b> pursuing Bachelor’s degrees in <b>Computer Science</b> and <b>Data Science</b>.</p>
@@ -90,7 +143,9 @@
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [4]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [4]:</div>
+            </div>
             <div class="jp-cell-content">
               <div class="jp-game-card">
                 <p class="jp-game-hint">Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move. Eat the food, avoid the walls and yourself! You can also move cursor over the topography to warp the terrain.</p>
@@ -115,7 +170,9 @@
         <!-- Experience tab -->
         <section class="jp-tab-pane" id="experience">
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [1]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [1]:</div>
+            </div>
             <div class="jp-cell-content">
               <h2 class="jp-section-title"><i class="fa fa-briefcase"></i> Experience</h2>
             </div>
@@ -127,7 +184,9 @@
           {% assign has_bullets = exp.bullets | size %}
           {% assign cell_num = forloop.index | plus: 1 %}
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [{{ cell_num }}]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [{{ cell_num }}]:</div>
+            </div>
             <div class="jp-cell-content">
               <div class="jp-exp-card {% if has_bullets > 0 %}jp-exp-expandable{% endif %}">
                 <div class="jp-exp-card-inner">
@@ -163,20 +222,26 @@
         <!-- Contact tab -->
         <section class="jp-tab-pane" id="contact">
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [1]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [1]:</div>
+            </div>
             <div class="jp-cell-content">
               <h2 class="jp-section-title"><i class="fa fa-envelope"></i> Contact</h2>
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [2]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [2]:</div>
+            </div>
             <div class="jp-cell-content">
               <pre class="jp-code-cell"><code>primary_contacts = { "calendly": "calendly.com/jegeronimo/chat", "email": "jegeronimo@berkeley.edu" }
 display(primary_contacts)</code></pre>
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">Out[2]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">Out[2]:</div>
+            </div>
             <div class="jp-cell-content">
               <div class="jp-contact-actions-grid">
                 <a href="https://calendly.com/jegeronimo/chat" class="jp-card jp-contact-action" target="_blank" rel="noopener">
@@ -193,14 +258,18 @@ display(primary_contacts)</code></pre>
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [3]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [3]:</div>
+            </div>
             <div class="jp-cell-content">
               <pre class="jp-code-cell"><code>social_profiles = { "linkedin": "@james-geronimo", "github": "@jegeronimo" }
 display(social_profiles)</code></pre>
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">Out[3]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">Out[3]:</div>
+            </div>
             <div class="jp-cell-content">
               <div class="jp-contact-actions-grid">
                 {% assign linkedin = site.social | where: "title", "linkedin" | first %}
@@ -219,14 +288,18 @@ display(social_profiles)</code></pre>
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">In [4]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [4]:</div>
+            </div>
             <div class="jp-cell-content">
               <pre class="jp-code-cell"><code>resume = { "name": "James Geronimo", "format": "PDF", "status": "Available" }
 display(resume)</code></pre>
             </div>
           </div>
           <div class="jp-cell">
-            <div class="jp-cell-prompt">Out[4]:</div>
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">Out[4]:</div>
+            </div>
             <div class="jp-cell-content">
               <div class="jp-contact-actions-grid">
                 <a href="resume.pdf" class="jp-card jp-contact-action" target="_blank">
@@ -243,8 +316,20 @@ display(resume)</code></pre>
   </main>
 
   <footer class="jp-statusbar">
-    <span class="jp-status-left"><i class="fa fa-circle"></i> {{ site.title }}</span>
-    <span class="jp-status-right">Ready</span>
+    <div class="jp-status-left">
+      <span class="jp-status-item"><i class="fa fa-circle"></i> {{ site.title }}</span>
+      <span class="jp-status-item">Simple</span>
+      <span class="jp-status-item">1</span>
+      <span class="jp-status-item"><i class="fa fa-dollar-sign"></i></span>
+      <span class="jp-status-item">3</span>
+      <span class="jp-status-item"><i class="fa fa-bolt"></i></span>
+      <span class="jp-status-item">Python</span>
+    </div>
+    <div class="jp-status-right">
+      <span class="jp-status-item">Ln 1, Col 1</span>
+      <span class="jp-status-item">Spaces: 4</span>
+      <span class="jp-status-item">Ready</span>
+    </div>
   </footer>
 
   <!-- Main JavaScript -->
