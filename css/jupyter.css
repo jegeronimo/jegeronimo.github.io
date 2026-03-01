@@ -445,6 +445,21 @@
   display: block;
 }
 
+#resume {
+  height: 100%;
+}
+
+.jp-pdf-viewer {
+  margin: -16px -20px -20px;
+  height: calc(100vh - 172px);
+}
+
+.jp-pdf-viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* Reduce spacing for About and Contact tabs to prevent scrolling */
 #about .jp-cell,
 #contact .jp-cell {

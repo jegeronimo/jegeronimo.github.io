@@ -91,6 +91,10 @@
         <span class="jp-tab-icon"><i class="fa fa-envelope"></i></span>
         <span class="jp-tab-label">contact.ipynb</span>
       </div>
+      <div class="jp-tab" data-tab="resume">
+        <span class="jp-tab-icon"><i class="fa fa-file-pdf"></i></span>
+        <span class="jp-tab-label">resume.pdf</span>
+      </div>
       <div class="jp-tabbar-actions">
         <button class="jp-tabbar-btn" title="New Tab"><i class="fa fa-plus"></i></button>
       </div>
@@ -129,7 +133,7 @@
             <div class="jp-cell-content">
               <div class="jp-about-block">
                 <p>👋 I am an undergraduate student at <b>UC Berkeley</b> pursuing Bachelor’s degrees in <b>Computer Science</b> and <b>Data Science</b>.</p>
-                <p>💻 My technical interests lie in software engineering, generative AI, and CS education tools. I am passionate about leveraging technology across healthcare, biotechnology, and education.</p>
+                <p>💻 My technical interests lie in software engineering, AI applications, and CS education. I am passionate about building systems where users can productively interact with AI.</p>
                 <p>🎙️ Would love to chat! See the <b>Contact</b> tab for my email and social media profiles.</p>
               </div>
             </div>
@@ -229,7 +233,7 @@ display(primary_contacts)</code></pre>
                 <a href="https://calendly.com/jegeronimo/chat" class="jp-card jp-contact-action" target="_blank" rel="noopener">
                   <div class="jp-card-icon"><i class="fa fa-calendar"></i></div>
                   <p class="jp-card-title">Calendly</p>
-                  <p class="jp-card-sub">Let's Chat</p>
+                  <p class="jp-card-sub">@jegeronimo/chat</p>
                 </a>
                 <a href="mailto:{{ site.email }}" class="jp-card jp-contact-action">
                   <div class="jp-card-icon"><i class="fa fa-envelope"></i></div>
@@ -297,6 +301,13 @@ display(resume)</code></pre>
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- Resume tab -->
+        <section class="jp-tab-pane" id="resume">
+          <div class="jp-pdf-viewer">
+            <iframe src="{{ '/resume.pdf' | relative_url }}" title="Resume"></iframe>
           </div>
         </section>
       </div>

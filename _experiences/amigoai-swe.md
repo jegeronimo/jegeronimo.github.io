@@ -1,10 +1,10 @@
 ---
-role: "Software Engineer Intern"
+role: "Software Engineer"
 img: "amigoai.jpg"
 alt: "AmigoAI (SkyDeck)"
 start_date: "2024-12-01"
 end_date: "2025-05-30"
-company: "AmigoAI"
+company: "AmigoAI (SkyDeck)"
 type: "Internship"
 description: "Led independent projects in computer vision/optical character recognition (OCR), webscraping, and automation testing."
 bullets:

@@ -1,5 +1,5 @@
 ---
-role: "Data Science Intern"
+role: "AI Engineer"
 img: "amgen.png"
 alt: "Amgen"
 start_date: "2025-06-01"
