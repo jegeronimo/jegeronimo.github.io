@@ -258,7 +258,7 @@
   font-size: 15px;
   color: var(--jp-ui-font-color1);
   transition: background 0.15s, color 0.15s;
-  max-width: 180px;
+  max-width: none;
 }
 
 .jp-tab:hover {

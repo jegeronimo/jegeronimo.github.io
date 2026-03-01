@@ -58,3 +58,6 @@ collections:
   experiences:
     output: true
     permalink: /experiences/:name/
+  organizations:
+    output: true
+    permalink: /organizations/:name/

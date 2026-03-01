@@ -87,6 +87,10 @@
         <span class="jp-tab-icon"><i class="fa fa-briefcase"></i></span>
         <span class="jp-tab-label">experience.ipynb</span>
       </div>
+      <div class="jp-tab" data-tab="organizations">
+        <span class="jp-tab-icon"><i class="fa fa-people-group"></i></span>
+        <span class="jp-tab-label">organizations.ipynb</span>
+      </div>
       <div class="jp-tab" data-tab="contact">
         <span class="jp-tab-icon"><i class="fa fa-envelope"></i></span>
         <span class="jp-tab-label">contact.ipynb</span>
@@ -199,6 +203,43 @@
                   </div>
                 </div>
                 {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </section>
+
+        <!-- Organizations tab -->
+        <section class="jp-tab-pane" id="organizations">
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [1]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <h2 class="jp-section-title"><i class="fa fa-people-group"></i> Organizations</h2>
+            </div>
+          </div>
+          {% assign sorted_orgs = site.organizations | sort: 'end_date' | reverse %}
+          {% for org in sorted_orgs %}
+          {% assign org_end_display = org.end_date | date: '%s' %}
+          {% assign org_now_ts = site.time | date: '%s' %}
+          {% assign org_cell_num = forloop.index | plus: 1 %}
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [{{ org_cell_num }}]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <div class="jp-exp-card">
+                <div class="jp-exp-card-inner">
+                  <div class="jp-exp-card-icon">
+                    <img src="{{ '/img/organizations/' | append: org.img | relative_url }}" alt="">
+                  </div>
+                  <p class="jp-exp-card-title">{{ org.organization }}</p>
+                  <span class="jp-exp-card-date">{{ org.start_date | date: "%b %Y" }} — {% if org.end_date %}{% if org_end_display > org_now_ts %}Present{% else %}{{ org.end_date | date: "%b %Y" }}{% endif %}{% else %}Present{% endif %}</span>
+                  {% if org.role %}<p class="jp-exp-card-sub">{{ org.role }}</p>{% endif %}
+                  {% if org.role %}<span class="jp-exp-card-type">{{ org.role_start_date | date: "%b %Y" }} — {% if org.role_end_date %}{{ org.role_end_date | date: "%b %Y" }}{% else %}Present{% endif %}</span>{% endif %}
+                  <p class="jp-exp-card-desc">{{ org.description }}</p>
+                </div>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ start_date: "2025-09-01"
 end_date: "2025-12-31"
 company: "Oracle"
 type: "Contract"
-description: "Engineering an AI tutor built on Oracle Cloud Infrastructure to promote active learning for UC Berkeley data science students."
+description: "Engineered an AI tutor built on Oracle Cloud Infrastructure to promote active learning for UC Berkeley data science students."
 bullets:
   - "Create an end-to-end AI tutor on Oracle Cloud Infrastructure with a RAG pipeline built on Oracle Database vectors, delivering source-grounded answers within a 2-second p50 latency SLO for 60+ concurrent users"
   - "Implement keyword/semantic retrieval using Autonomous AI Databases and vector embeddings for relevance"
