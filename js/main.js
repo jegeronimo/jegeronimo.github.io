@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var tabs = document.querySelectorAll('.jp-tab');
     var panes = document.querySelectorAll('.jp-tab-pane');
     var sidebars = document.querySelectorAll('.jp-sidebar-item');
-    var validTabs = ['about', 'experience', 'organizations', 'contact', 'resume'];
+    var validTabs = ['about', 'experience', 'organizations', 'courses', 'contact', 'resume'];
 
     if (tabs.length === 0) return; // Only run if tabs exist
 

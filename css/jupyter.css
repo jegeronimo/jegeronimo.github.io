@@ -462,7 +462,8 @@
 
 /* Reduce spacing for About and Contact tabs to prevent scrolling */
 #about .jp-cell,
-#contact .jp-cell {
+#contact .jp-cell,
+#courses .jp-cell {
   margin-bottom: 12px;
 }
 
@@ -1074,6 +1075,37 @@
 
 .jp-exp-body-inner a:hover {
   text-decoration: underline;
+}
+
+/* ----- Courses: chips ----- */
+.jp-course-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.jp-course-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 5px 10px;
+  background: var(--jp-card-bg);
+  border: 1px solid var(--jp-card-border);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--jp-ui-font-color1);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.jp-course-chip b {
+  color: var(--jp-ui-font-color0);
+  font-weight: 600;
+}
+
+.jp-course-star {
+  font-size: 11px;
+  color: #f5a623;
 }
 
 /* ----- Contact: cards ----- */

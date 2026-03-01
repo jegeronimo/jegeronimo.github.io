@@ -91,6 +91,10 @@
         <span class="jp-tab-icon"><i class="fa fa-people-group"></i></span>
         <span class="jp-tab-label">organizations.ipynb</span>
       </div>
+      <div class="jp-tab" data-tab="courses">
+        <span class="jp-tab-icon"><i class="fa fa-graduation-cap"></i></span>
+        <span class="jp-tab-label">courses.ipynb</span>
+      </div>
       <div class="jp-tab" data-tab="contact">
         <span class="jp-tab-icon"><i class="fa fa-envelope"></i></span>
         <span class="jp-tab-label">contact.ipynb</span>
@@ -244,6 +248,113 @@
             </div>
           </div>
           {% endfor %}
+        </section>
+
+        <!-- Courses tab -->
+        <section class="jp-tab-pane" id="courses">
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [1]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <h2 class="jp-section-title"><i class="fa fa-graduation-cap"></i> Courses</h2>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [2]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <pre class="jp-code-cell"><code>cs_courses = ["COMPSCI 370", "COMPSCI 294", "COMPSCI 194-271", "COMPSCI 194-244", "COMPSCI 189", "COMPSCI 188", "COMPSCI 170", "COMPSCI 161", "COMPSCI 70", "COMPSCI 61C", "COMPSCI 61B", "COMPSCI 61A"]
+display(cs_courses)</code></pre>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">Out[2]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <div class="jp-course-chips">
+                <span class="jp-course-chip"><b>COMPSCI 370</b> Instructional Techniques</span>
+                <span class="jp-course-chip"><b>COMPSCI 294</b> Computer Science Education</span>
+                <span class="jp-course-chip"><b>COMPSCI 194-271</b> AI Education Research</span>
+                <span class="jp-course-chip"><b>COMPSCI 194-244</b> CS Education Research</span>
+                <span class="jp-course-chip"><b>COMPSCI 189</b> Machine Learning</span>
+                <span class="jp-course-chip"><b>COMPSCI 188</b> Artificial Intelligence</span>
+                <span class="jp-course-chip"><b>COMPSCI 170</b> Efficient Algorithms</span>
+                <span class="jp-course-chip"><b>COMPSCI 161</b> Computer Security</span>
+                <span class="jp-course-chip"><b>COMPSCI 70</b> Discrete Math &amp; Probability</span>
+                <span class="jp-course-chip"><b>COMPSCI 61C</b> Machine Structures</span>
+                <span class="jp-course-chip"><b>COMPSCI 61B</b> Data Structures &amp; Algorithms</span>
+                <span class="jp-course-chip"><b>COMPSCI 61A</b> Computer Programs</span>
+              </div>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [3]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <pre class="jp-code-cell"><code>data_courses = ["DATA 145", "DATA 144", "DATA 140", "DATA 104", "DATA 102", "DATA 101", "DATA 100", "DATA 8"]
+display(data_courses)</code></pre>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">Out[3]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <div class="jp-course-chips">
+                <span class="jp-course-chip"><i class="fa fa-star jp-course-star"></i><b>DATA 100</b> Advanced Data Science</span>
+                <span class="jp-course-chip"><b>DATA 145</b> Evidence &amp; Uncertainty</span>
+                <span class="jp-course-chip"><b>DATA 144</b> Data Analytics</span>
+                <span class="jp-course-chip"><b>DATA 140</b> Probability Theory</span>
+                <span class="jp-course-chip"><b>DATA 104</b> Data Ethics</span>
+                <span class="jp-course-chip"><b>DATA 102</b> Inference</span>
+                <span class="jp-course-chip"><b>DATA 101</b> Data Engineering</span>
+                <span class="jp-course-chip"><b>DATA 8</b> Data Science</span>
+              </div>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [4]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <pre class="jp-code-cell"><code>econ_courses = ["ECON 140", "ECON 100A"]
+display(econ_courses)</code></pre>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">Out[4]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <div class="jp-course-chips">
+                <span class="jp-course-chip"><b>ECON 140</b> Econometrics</span>
+                <span class="jp-course-chip"><b>ECON 100A</b> Microeconomics</span>
+              </div>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">In [5]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <pre class="jp-code-cell"><code>math_courses = ["MATH 54"]
+display(math_courses)</code></pre>
+            </div>
+          </div>
+          <div class="jp-cell">
+            <div class="jp-cell-header">
+              <div class="jp-cell-prompt">Out[5]:</div>
+            </div>
+            <div class="jp-cell-content">
+              <div class="jp-course-chips">
+                <span class="jp-course-chip"><b>MATH 54</b> Linear Algebra</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- Contact tab -->
