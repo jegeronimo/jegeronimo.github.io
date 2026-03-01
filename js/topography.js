@@ -35,6 +35,15 @@ function initTopography() {
     }
     const followCursor = !!about;
     setupCanvas(followCursor);
+
+    // Re-init dimensions whenever the canvas becomes visible (e.g. tab switch)
+    const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) canvasSize();
+        }
+    });
+    observer.observe(canvas);
+
     animate();
 }
 
