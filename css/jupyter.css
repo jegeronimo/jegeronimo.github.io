@@ -348,6 +348,7 @@
   border-radius: 3px;
   cursor: default;
   transition: background 0.15s, color 0.15s;
+  text-decoration: none;
 }
 
 .jp-tabbar-btn:hover {
