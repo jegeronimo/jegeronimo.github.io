@@ -6,7 +6,11 @@ const thresholdIncrement = 5;
 const thickLineThresholdMultiple = 3;
 const res = 10;
 const baseZOffset = 0.00035;
+const hoverZOffset = 0.0015;
 const lineColor = '#6495ed';
+const cursorRadius = 20;
+const cursorPull = 8;
+const cursorRampSpeed = 0.25;
 
 let canvas;
 let ctx;
@@ -16,12 +20,15 @@ let currentThreshold = 0;
 let cols = 0;
 let rows = 0;
 let zOffset = 0;
-let zBoostValues = [];
 let noiseMin = 100;
 let noiseMax = 0;
 
 let lastFrameTime = 0;
 const targetFPS = 30;
+
+let mouseGX = -1, mouseGY = -1;
+let mouseOver = false;
+let cursorStrength = 0;
 
 function initTopography() {
     const about = document.getElementById('topography-canvas-about');
@@ -36,7 +43,6 @@ function initTopography() {
     const followCursor = !!about;
     setupCanvas(followCursor);
 
-    // Re-init dimensions whenever the canvas becomes visible (e.g. tab switch)
     const observer = new IntersectionObserver((entries) => {
         for (const entry of entries) {
             if (entry.isIntersecting) canvasSize();
@@ -55,24 +61,12 @@ function setupCanvas(followCursor) {
         const wrap = canvas.parentElement;
         wrap.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
-            const mx = e.clientX - rect.left;
-            const my = e.clientY - rect.top;
-            const gx = Math.floor(mx / res);
-            const gy = Math.floor(my / res);
-            const R = 1;
-            for (let dy = -R; dy <= R; dy++) {
-                for (let dx = -R; dx <= R; dx++) {
-                    if (dx * dx + dy * dy > R * R) continue;
-                    const ny = gy + dy, nx = gx + dx;
-                    if (ny >= 0 && ny < rows && nx >= 0 && nx < cols) {
-                        const d = Math.sqrt(dx * dx + dy * dy);
-                        const boost = Math.max(0, 0.3 - d * 0.2);
-                        if (zBoostValues[ny] && zBoostValues[ny][nx] !== undefined) {
-                            zBoostValues[ny][nx] = Math.max(zBoostValues[ny][nx] || 0, boost);
-                        }
-                    }
-                }
-            }
+            mouseGX = (e.clientX - rect.left) / res;
+            mouseGY = (e.clientY - rect.top) / res;
+            mouseOver = true;
+        });
+        wrap.addEventListener('mouseleave', () => {
+            mouseOver = false;
         });
     }
 }
@@ -88,22 +82,12 @@ function canvasSize() {
     cols = Math.floor(canvas.width / res) + 1;
     rows = Math.floor(canvas.height / res) + 1;
     
-    // Reuse or reinitialize inputValues and zBoostValues
     if (!Array.isArray(inputValues) || inputValues.length !== rows) {
         inputValues = Array.from({ length: rows }, () => Array(cols + 1).fill(0));
     } else {
         for (let y = 0; y < rows; y++) {
             if (!Array.isArray(inputValues[y]) || inputValues[y].length !== cols + 1) {
                 inputValues[y] = Array(cols + 1).fill(0);
-            }
-        }
-    }
-    if (!Array.isArray(zBoostValues) || zBoostValues.length !== rows) {
-        zBoostValues = Array.from({ length: rows }, () => Array(cols).fill(0));
-    } else {
-        for (let y = 0; y < rows; y++) {
-            if (!Array.isArray(zBoostValues[y]) || zBoostValues[y].length !== cols) {
-                zBoostValues[y] = Array(cols).fill(0);
             }
         }
     }
@@ -115,10 +99,9 @@ function animate(now) {
         return;
     }
     lastFrameTime = now;
-    const startTime = performance.now();
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    zOffset += baseZOffset;
+    zOffset += baseZOffset + (hoverZOffset - baseZOffset) * cursorStrength;
     generateNoise();
     
     const roundedNoiseMin = Math.floor(noiseMin / thresholdIncrement) * thresholdIncrement;
@@ -136,14 +119,30 @@ function animate(now) {
 }
 
 function generateNoise() {
+    const target = mouseOver ? 1 : 0;
+    cursorStrength += (target - cursorStrength) * cursorRampSpeed;
+
     for (let y = 0; y < rows; y++) {
         for (let x = 0; x <= cols; x++) {
-            inputValues[y][x] = ChriscoursesPerlinNoise.noise(x * 0.02, y * 0.02, zOffset + zBoostValues[y]?.[x]) * 100;
-            if (inputValues[y][x] < noiseMin) noiseMin = inputValues[y][x];
-            if (inputValues[y][x] > noiseMax) noiseMax = inputValues[y][x];
-            if (zBoostValues[y]?.[x] > 0) {
-                zBoostValues[y][x] *= 0.99;
+            let sx = x * 0.02;
+            let sy = y * 0.02;
+
+            if (cursorStrength > 0.005) {
+                const dx = x - mouseGX;
+                const dy = y - mouseGY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < cursorRadius && dist > 0.5) {
+                    const t = 1 - dist / cursorRadius;
+                    const pull = cursorStrength * cursorPull * t * t;
+                    sx -= (dx / dist) * pull * 0.02;
+                    sy -= (dy / dist) * pull * 0.02;
+                }
             }
+
+            const val = ChriscoursesPerlinNoise.noise(sx, sy, zOffset) * 100;
+            inputValues[y][x] = val;
+            if (val < noiseMin) noiseMin = val;
+            if (val > noiseMax) noiseMax = val;
         }
     }
 }
@@ -251,5 +250,4 @@ function binaryToType(nw, ne, se, sw) {
     return a.reduce((res, x) => (res << 1) | x);
 }
 
-// Initialize when the DOM is loaded
-document.addEventListener('DOMContentLoaded', initTopography); 
+document.addEventListener('DOMContentLoaded', initTopography);
