@@ -50,27 +50,54 @@ document.addEventListener('DOMContentLoaded', function() {
       return validTabs.indexOf(h) >= 0 ? h : 'about';
     }
 
-    function switchTo(id) {
+    function switchTo(id, updateHash) {
       tabs.forEach(function(t) { t.classList.toggle('jp-tab-active', t.getAttribute('data-tab') === id); });
       panes.forEach(function(p) { p.classList.toggle('jp-active', p.id === id); });
       sidebars.forEach(function(s) { s.classList.toggle('jp-sidebar-active', s.getAttribute('data-tab') === id); });
-      var want = '#' + id;
-      if ((location.hash || '') !== want) {
-        var base = (location.pathname || '/') + (location.search || '');
-        history.replaceState(null, '', base + want);
+      if (updateHash === false) return;
+      if (id === 'about') {
+        if (location.hash) {
+          var base = (location.pathname || '/') + (location.search || '');
+          history.replaceState(null, '', base);
+        }
+      } else {
+        var want = '#' + id;
+        if ((location.hash || '') !== want) {
+          var base = (location.pathname || '/') + (location.search || '');
+          history.replaceState(null, '', base + want);
+        }
       }
     }
 
     tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() { switchTo(tab.getAttribute('data-tab')); });
+      tab.addEventListener('click', function() {
+        var id = tab.getAttribute('data-tab');
+        if (id === 'about') {
+          switchTo('about', false);
+          var base = (location.pathname || '/') + (location.search || '');
+          history.replaceState(null, '', base + '#about');
+        } else {
+          switchTo(id);
+        }
+      });
     });
 
     sidebars.forEach(function(sb) {
       sb.addEventListener('click', function() { switchTo(sb.getAttribute('data-tab')); });
     });
 
+    var homeBtn = document.getElementById('titlebar-home');
+    if (homeBtn) {
+      homeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        switchTo('about');
+      });
+    }
+
     window.addEventListener('hashchange', function() { switchTo(getTabFromHash()); });
-    switchTo(getTabFromHash());
+    var initialTab = getTabFromHash();
+    var hadHash = !!location.hash;
+    switchTo(initialTab, hadHash);
 
     // Experience card expansion
     document.querySelectorAll('.jp-exp-card').forEach(function(card) {
