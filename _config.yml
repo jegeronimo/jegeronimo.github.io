@@ -42,10 +42,10 @@ quote: |
 social:
   - title: linkedin
     url: https://www.linkedin.com/in/james-geronimo/
+  - title: handshake
+    url: https://app.joinhandshake.com/profiles/james-geronimo
   - title: github
     url: https://github.com/jegeronimo
-  - title: instagram
-    url: https://www.instagram.com/jam.gero/
 
 # Credits content
 credits: 'This website was built off of "Freelancer", a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com" target="_blank">Start Bootstrap</a>.'

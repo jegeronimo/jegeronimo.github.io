@@ -2,6 +2,21 @@
 
 // Initialize Bootstrap scrollspy and smooth scrolling
 document.addEventListener('DOMContentLoaded', function() {
+  // Relative time for "Last Checkpoint"
+  (function() {
+    var el = document.getElementById('checkpoint-time');
+    if (!el) return;
+    var buildTime = new Date(el.getAttribute('data-time'));
+    var now = new Date();
+    var diff = Math.floor((now - buildTime) / 1000);
+    var text;
+    if (diff < 60) text = 'a few seconds ago';
+    else if (diff < 3600) { var m = Math.floor(diff / 60); text = m === 1 ? 'a minute ago' : m + ' minutes ago'; }
+    else if (diff < 86400) { var h = Math.floor(diff / 3600); text = h === 1 ? 'an hour ago' : h + ' hours ago'; }
+    else { var d = Math.floor(diff / 86400); text = d === 1 ? 'yesterday' : d + ' days ago'; }
+    el.textContent = text;
+  })();
+
   // Initialize Bootstrap scrollspy (if jQuery and Bootstrap are available)
   if (typeof $ !== 'undefined' && typeof $.fn.scrollspy !== 'undefined') {
     $('body').scrollspy({
