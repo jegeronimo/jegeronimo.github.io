@@ -12,12 +12,12 @@
   --jp-layout-color1: #f7f7f7;
   --jp-layout-color2: #eeeeee;
   --jp-layout-color3: #e0e0e0;
-  --jp-brand-color1: #1976d2;
-  --jp-accent-color: #1565c0;
+  --jp-brand-color1: #00cccc;
+  --jp-accent-color: #00b3b3;
   --jp-content-bg: #ffffff;
   --jp-tab-active-bg: #ffffff;
   --jp-tab-inactive-bg: #eeeeee;
-  --jp-tab-active-border: #1976d2;
+  --jp-tab-active-border: #00cccc;
   --jp-card-bg: #fafafa;
   --jp-card-border: #e8e8e8;
   --jp-sidebar-bg: #f3f3f3;
@@ -234,6 +234,7 @@
   background: var(--jp-layout-color2);
   border-bottom: 1px solid var(--jp-border-color);
   min-height: 38px;
+  overflow-y: hidden;
 }
 
 .jp-tabbar-content {
@@ -241,6 +242,7 @@
   align-items: center;
   padding: 0 8px 0 12px;
   gap: 0;
+  overflow-y: hidden;
 }
 
 .jp-tab {
@@ -473,18 +475,8 @@
   margin-bottom: 0;
 }
 
-#about .jp-about-block,
-#about .jp-game-card {
+#about .jp-about-block {
   padding: 12px;
-}
-
-#about .jp-game-hint {
-  margin-bottom: 8px;
-  font-size: 11px;
-}
-
-#about .jp-game-topo-row {
-  gap: 8px;
 }
 
 #contact .jp-code-cell {
@@ -740,65 +732,7 @@
   color: var(--jp-ui-font-color0);
 }
 
-/* ----- About: Snake game ----- */
-.jp-game-card {
-  background: var(--jp-card-bg);
-  border: 1px solid var(--jp-card-border);
-  border-radius: 8px;
-  padding: 16px;
-  margin: 0;
-}
-
-.jp-game-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--jp-ui-font-color0);
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.jp-game-title i {
-  color: var(--jp-brand-color1);
-}
-
-.jp-game-hint {
-  font-size: 12px;
-  color: var(--jp-ui-font-color2);
-  margin: 0 0 12px 0;
-}
-
-.jp-game-hint kbd {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 2px 5px;
-  background: var(--jp-layout-color2);
-  border: 1px solid var(--jp-border-color);
-  border-radius: 4px;
-}
-
-.jp-game-topo-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.jp-game-wrap {
-  position: relative;
-  display: inline-block;
-  flex-shrink: 0;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid var(--jp-card-border);
-}
-
-.jp-game-wrap canvas {
-  display: block;
-  background: var(--jp-layout-color0);
-}
-
+/* ----- About: Topography ----- */
 .jp-topography-wrap {
   flex: 1;
   min-width: 200px;
@@ -832,65 +766,6 @@
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.jp-game-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(250, 250, 250, 0.9);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  transition: opacity 0.2s;
-}
-
-.jp-game-overlay.jp-game-hidden {
-  pointer-events: none;
-  opacity: 0;
-}
-
-.jp-game-overlay-msg {
-  font-size: 13px;
-  color: var(--jp-ui-font-color1);
-  margin: 0;
-}
-
-.jp-game-btn {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 16px;
-  background: var(--jp-brand-color1);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.jp-game-btn:hover {
-  background: var(--jp-accent-color);
-}
-
-.jp-game-btn-sm {
-  padding: 4px 10px;
-  font-size: 12px;
-  margin-left: 8px;
-}
-
-.jp-game-score {
-  font-size: 13px;
-  color: var(--jp-ui-font-color1);
-  margin-top: 10px;
-}
-
-.jp-game-score strong {
-  color: var(--jp-ui-font-color0);
 }
 
 .jp-action-cards {
@@ -1214,6 +1089,9 @@
 @media (max-width: 640px) {
   .jp-tabbar-content {
     overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
   }
 
   .jp-tab {
