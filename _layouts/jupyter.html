@@ -42,37 +42,37 @@
 
   <!-- Row 3: Toolbar -->
   <div class="jp-toolbar">
-    <div class="jp-toolbar-group">
-      <button class="jp-toolbar-btn" title="Save"><i class="fa fa-floppy-disk"></i></button>
-      <button class="jp-toolbar-btn" title="New"><i class="fa fa-plus"></i></button>
-      <button class="jp-toolbar-btn" title="Cut"><i class="fa fa-scissors"></i></button>
-      <button class="jp-toolbar-btn" title="Copy"><i class="fa fa-copy"></i></button>
-      <button class="jp-toolbar-btn" title="Paste"><i class="fa fa-paste"></i></button>
+    <div class="jp-toolbar-group jp-toolbar-group-edit">
+      <button class="jp-toolbar-btn jp-btn-save" title="Save"><i class="fa fa-floppy-disk"></i></button>
+      <button class="jp-toolbar-btn jp-btn-new" title="New"><i class="fa fa-plus"></i></button>
+      <button class="jp-toolbar-btn jp-btn-cut" title="Cut"><i class="fa fa-scissors"></i></button>
+      <button class="jp-toolbar-btn jp-btn-copy" title="Copy"><i class="fa fa-copy"></i></button>
+      <button class="jp-toolbar-btn jp-btn-paste" title="Paste"><i class="fa fa-paste"></i></button>
     </div>
-    <div class="jp-toolbar-divider"></div>
-    <div class="jp-toolbar-group">
-      <button class="jp-toolbar-btn" title="Run Cell"><i class="fa fa-play"></i></button>
-      <button class="jp-toolbar-btn" title="Stop"><i class="fa fa-stop"></i></button>
-      <button class="jp-toolbar-btn" title="Restart Kernel"><i class="fa fa-rotate-right"></i></button>
-      <button class="jp-toolbar-btn" title="Run All Below"><i class="fa fa-forward-step"></i></button>
+    <div class="jp-toolbar-divider jp-toolbar-divider-1"></div>
+    <div class="jp-toolbar-group jp-toolbar-group-run">
+      <button class="jp-toolbar-btn jp-btn-run" title="Run Cell"><i class="fa fa-play"></i></button>
+      <button class="jp-toolbar-btn jp-btn-stop" title="Stop"><i class="fa fa-stop"></i></button>
+      <button class="jp-toolbar-btn jp-btn-restart" title="Restart Kernel"><i class="fa fa-rotate-right"></i></button>
+      <button class="jp-toolbar-btn jp-btn-runall" title="Run All Below"><i class="fa fa-forward-step"></i></button>
     </div>
-    <div class="jp-toolbar-divider"></div>
-    <div class="jp-toolbar-group">
+    <div class="jp-toolbar-divider jp-toolbar-divider-2"></div>
+    <div class="jp-toolbar-group jp-toolbar-group-type">
       <div class="jp-cell-type-dropdown">
         <span>Code</span>
         <i class="fa fa-chevron-down"></i>
       </div>
     </div>
     <div class="jp-toolbar-spacer"></div>
-    <div class="jp-toolbar-group">
-      <span class="jp-toolbar-label">Open in...</span>
+    <div class="jp-toolbar-group jp-toolbar-group-right">
+      <span class="jp-toolbar-label jp-label-openin">Open in...</span>
       <div class="jp-kernel-indicator">
         <span>Python 3 (ipykernel)</span>
         <i class="fa fa-circle jp-kernel-status"></i>
       </div>
-      <a href="{{ '/resume.pdf' | relative_url }}" class="jp-toolbar-btn" title="Download Resume" download><i class="fa fa-download"></i></a>
-      <button class="jp-toolbar-btn" title="Git"><i class="fa-brands fa-git-alt"></i></button>
-      <span class="jp-toolbar-label">Format SQL</span>
+      <a href="{{ '/resume.pdf' | relative_url }}" class="jp-toolbar-btn jp-btn-download" title="Download Resume" download><i class="fa fa-download"></i></a>
+      <button class="jp-toolbar-btn jp-btn-git" title="Git"><i class="fa-brands fa-git-alt"></i></button>
+      <span class="jp-toolbar-label jp-label-formatsql">Format SQL</span>
     </div>
   </div>
 
@@ -468,19 +468,19 @@ display(resume)</code></pre>
 
   <footer class="jp-statusbar">
     <div class="jp-status-left">
-      <span class="jp-status-item jp-status-toggle"><span class="jp-toggle-track"><span class="jp-toggle-thumb"></span></span> Simple</span>
-      <span class="jp-status-item"><i class="fa fa-circle jp-status-green"></i> 2</span>
-      <span class="jp-status-item"><i class="fa fa-code-branch"></i> main</span>
-      <span class="jp-status-item">Python 3 (ipykernel) | Idle</span>
-      <span class="jp-status-item">Mem: 100.30 / 2004.08 MB</span>
+      <span class="jp-status-item jp-status-toggle"><span class="jp-toggle-track"><span class="jp-toggle-thumb"></span></span> <span class="jp-status-toggle-label">Simple</span></span>
+      <span class="jp-status-item jp-status-notifs"><i class="fa fa-circle jp-status-green"></i> 2</span>
+      <span class="jp-status-item jp-status-branch"><i class="fa fa-code-branch"></i> main</span>
+      <span class="jp-status-item jp-status-kernel">Python 3 (ipykernel) | Idle</span>
+      <span class="jp-status-item jp-status-mem">Mem: 100.30 / 2004.08 MB</span>
     </div>
     <div class="jp-status-right">
-      <span class="jp-status-item">Mode: Command</span>
-      <span class="jp-status-item"><i class="fa fa-bell"></i></span>
-      <span class="jp-status-item">Ln 0, Col 0</span>
-      <span class="jp-status-item">{{ site.title }}</span>
-      <span class="jp-status-item">0 <i class="fa fa-times-circle"></i></span>
-      <span class="jp-status-item"><i class="fa fa-gear"></i></span>
+      <span class="jp-status-item jp-status-mode">Mode: Command</span>
+      <span class="jp-status-item jp-status-bell"><i class="fa fa-bell"></i></span>
+      <span class="jp-status-item jp-status-lncol">Ln 0, Col 0</span>
+      <span class="jp-status-item jp-status-title">{{ site.title }}</span>
+      <span class="jp-status-item jp-status-errors">0 <i class="fa fa-times-circle"></i></span>
+      <span class="jp-status-item jp-status-settings"><i class="fa fa-gear"></i></span>
     </div>
   </footer>
 

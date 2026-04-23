@@ -1065,8 +1065,262 @@
   transition: left 0.15s;
 }
 
-/* ----- Responsive ----- */
-@media (max-width: 768px) {
+/* ----- Responsive: keep header + footer on one line at every width ----- *
+ * Strategy: clip overflow on every fixed-height chrome row, keep functional
+ * controls (home link, social links, tabs, download/git, Simple toggle)
+ * shrink-proof, and progressively drop decorative items as the viewport
+ * narrows so nothing ever gets cut off mid-element.
+ */
+
+.jp-titlebar,
+.jp-menubar,
+.jp-toolbar,
+.jp-tabbar,
+.jp-statusbar {
+  overflow: hidden;
+}
+
+.jp-titlebar-home,
+.jp-titlebar-checkpoint,
+.jp-menu-item,
+.jp-trusted-badge,
+.jp-toolbar-group,
+.jp-toolbar-divider,
+.jp-toolbar-btn,
+.jp-toolbar-label,
+.jp-cell-type-dropdown,
+.jp-kernel-indicator,
+.jp-status-item,
+.jp-status-left,
+.jp-status-right {
+  flex-shrink: 0;
+}
+
+.jp-titlebar-checkpoint {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* Let the spacer absorb slack so the right toolbar group anchors to the edge */
+.jp-toolbar-spacer {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.jp-menubar-spacer {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ===== Progressive hiding of decorative chrome =====
+ * Footer overflows ≈ 880px; header/toolbar overflows ≈ 740px.
+ * Footer: drop the smallest items first so the large anchor items
+ *   (Python 3 | Idle, Mem, jegeronimo, Mode: Command, Simple toggle)
+ *   keep the bar visually full instead of leaving big gaps.
+ * Header: drop the decorative right-side labels / indicators first and
+ *   keep the shortcut buttons until they genuinely cannot fit (~290px).
+ */
+
+/* ---- Footer (status bar) ---- */
+
+/* gear — tiniest right-edge glyph */
+@media (max-width: 880px) {
+  .jp-status-settings {
+    display: none;
+  }
+}
+
+/* bell */
+@media (max-width: 850px) {
+  .jp-status-bell {
+    display: none;
+  }
+}
+
+/* "2" notifications badge */
+@media (max-width: 820px) {
+  .jp-status-notifs {
+    display: none;
+  }
+}
+
+/* "0 ×" error count */
+@media (max-width: 790px) {
+  .jp-status-errors {
+    display: none;
+  }
+}
+
+/* "Ln 0, Col 0" */
+@media (max-width: 740px) {
+  .jp-status-lncol {
+    display: none;
+  }
+}
+
+/* "main" branch indicator */
+@media (max-width: 680px) {
+  .jp-status-branch {
+    display: none;
+  }
+}
+
+/* "Simple" label (keep the toggle track) */
+@media (max-width: 620px) {
+  .jp-status-toggle-label {
+    display: none;
+  }
+}
+
+/* jegeronimo (site title on the right) */
+@media (max-width: 560px) {
+  .jp-status-title {
+    display: none;
+  }
+}
+
+/* Mode: Command — last thing on the right */
+@media (max-width: 480px) {
+  .jp-status-mode {
+    display: none;
+  }
+}
+
+/* Mem readout */
+@media (max-width: 400px) {
+  .jp-status-mem {
+    display: none;
+  }
+}
+
+/* Python 3 | Idle kernel readout */
+@media (max-width: 330px) {
+  .jp-status-kernel {
+    display: none;
+  }
+}
+
+/* ---- Header (toolbar) ---- */
+
+/* Right-edge labels are pure filler */
+@media (max-width: 740px) {
+  .jp-label-formatsql,
+  .jp-label-openin {
+    display: none;
+  }
+}
+
+/* "Python 3 (ipykernel)" kernel indicator — the biggest decorative chunk */
+@media (max-width: 600px) {
+  .jp-kernel-indicator {
+    display: none;
+  }
+}
+
+/* "Code ▾" cell-type dropdown */
+@media (max-width: 460px) {
+  .jp-toolbar-group-type,
+  .jp-toolbar-divider-2 {
+    display: none;
+  }
+}
+
+/* Git icon — decorative brand touch, goes before any shortcut */
+@media (max-width: 370px) {
+  .jp-btn-git {
+    display: none;
+  }
+}
+
+/* Divider between edit + run groups — cosmetic separator only */
+@media (max-width: 330px) {
+  .jp-toolbar-divider {
+    display: none;
+  }
+}
+
+/* Shortcut buttons: peel off from the right edge of each group
+   only when the 9 icons genuinely stop fitting (~290px). */
+@media (max-width: 290px) {
+  .jp-btn-runall {
+    display: none;
+  }
+}
+
+@media (max-width: 270px) {
+  .jp-btn-restart {
+    display: none;
+  }
+}
+
+@media (max-width: 250px) {
+  .jp-btn-paste {
+    display: none;
+  }
+}
+
+@media (max-width: 230px) {
+  .jp-btn-copy {
+    display: none;
+  }
+}
+
+@media (max-width: 210px) {
+  .jp-btn-cut {
+    display: none;
+  }
+}
+
+@media (max-width: 190px) {
+  .jp-btn-new {
+    display: none;
+  }
+}
+
+/* ---- Experience / Organizations cards ---- */
+
+@media (max-width: 610px) {
+  .jp-exp-card-date,
+  .jp-exp-card-type {
+    display: none;
+  }
+}
+
+/* ---- Titlebar + menubar ---- */
+
+@media (max-width: 400px) {
+  .jp-trusted-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 340px) {
+  .jp-titlebar-checkpoint {
+    display: none;
+  }
+}
+
+@media (max-width: 300px) {
+  .jp-titlebar-name {
+    font-size: 14px;
+  }
+
+  .jp-titlebar-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .jp-menu-item {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+}
+
+/* ---- Content area + tab bar ---- */
+
+@media (max-width: 720px) {
   .jp-sidebar {
     width: 44px;
   }
@@ -1084,9 +1338,7 @@
   .jp-contact-actions-grid {
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 640px) {
   .jp-tabbar-content {
     overflow-x: auto;
     overflow-y: hidden;
@@ -1097,5 +1349,4 @@
   .jp-tab {
     flex-shrink: 0;
   }
-
 }
