@@ -1,5 +1,5 @@
 ---
-role: "Research Assistant"
+role: "AI Researcher"
 img: "ucsf.jpg"
 alt: "UCSF Abbasi Lab"
 start_date: "2025-02-01"

@@ -1,5 +1,5 @@
 ---
-role: "Research Assistant"
+role: "AI Researcher"
 img: "uw.png"
 alt: "UW School of Pharmacy"
 start_date: "2024-01-01"
